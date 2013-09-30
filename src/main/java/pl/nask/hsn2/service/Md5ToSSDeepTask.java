@@ -92,9 +92,6 @@ public class Md5ToSSDeepTask implements Task {
 			catch (IOException e) {
 				LOGGER.error(e.getMessage(), e);
 			}
-			finally{
-				SSDeepHashGenerator.flush();
-			}
 		}
 		else {
 			LOGGER.info("Task skipped, not js");

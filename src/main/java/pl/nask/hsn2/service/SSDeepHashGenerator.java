@@ -15,19 +15,13 @@ public class SSDeepHashGenerator {
 	private static final Logger LOGGER = LoggerFactory.getLogger(SSDeepHashGenerator.class);
 	private static NativeLibrary nativeLibrary;
 	private final static int HASH_BYTE_ARRAY_LENGTH = 180;
-	private static BufferedWriter writer;
+	private static String outputPath ;
 	
-	public static void initialize(String libName, String whitelistPath){
+	public static void initialize(String libName, String outputPath){
 		LOGGER.info("Loading ssdeep library");
 		nativeLibrary = NativeLibrary.getInstance(libName);
 		LOGGER.info("ssdeep library loaded");
-		try{
-			writer = new BufferedWriter(new FileWriter(whitelistPath));
-			LOGGER.info("Output file: " + whitelistPath);
-		}
-		catch (IOException e){
-			throw new RuntimeException(e.getMessage(), e);
-		}
+		SSDeepHashGenerator.outputPath = outputPath;
 	}
 	
 	private static String generateHashForFile(String path){
@@ -47,16 +41,14 @@ public class SSDeepHashGenerator {
 	}
 	
 	public static void addNewHashForFile(String path) throws IOException{
-		String hash = generateHashForFile(path);
-		writer.write("100 " + hash);
-		writer.newLine();
-	}
-	
-	public static void flush(){
-		try{
-			writer.flush();
-		} catch (IOException e) {
-			throw new RuntimeException("Could not save to file!", e);
+		try(BufferedWriter writer = new BufferedWriter(new FileWriter(outputPath, true))){
+			String hash = generateHashForFile(path);
+			writer.write("100 " + hash);
+			writer.newLine();
+			LOGGER.info("Output file: " + outputPath);
+		}
+		catch (IOException e){
+			throw new RuntimeException(e.getMessage(), e);
 		}
 	}
 }

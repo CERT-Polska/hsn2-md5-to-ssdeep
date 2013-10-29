@@ -56,8 +56,9 @@ public class Md5ToSSDeepService extends ServiceMain {
 	}
 
 	@Override
-	protected TaskFactory createTaskFactory() {
-		return new Md5ToSSDeepTaskFactory((MTSCommandLineParams)getCommandLineParams());
+	protected Class<? extends TaskFactory> initializeTaskFactory() {
+		Md5ToSSDeepTaskFactory.prepereForAllThreads((MTSCommandLineParams)getCommandLineParams());
+		return Md5ToSSDeepTaskFactory.class;
 	}
 
 }

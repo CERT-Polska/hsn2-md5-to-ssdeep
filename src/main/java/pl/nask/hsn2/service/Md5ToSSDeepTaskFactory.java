@@ -28,15 +28,14 @@ import pl.nask.hsn2.wrappers.ParametersWrapper;
 
 public class Md5ToSSDeepTaskFactory implements TaskFactory {
 
-	private MTSCommandLineParams cmd;
-
-	public Md5ToSSDeepTaskFactory(MTSCommandLineParams commandLineParams) {
-		cmd = commandLineParams;
-	}
+	private static MTSCommandLineParams cmd;
 
 	@Override
 	public Task newTask(TaskContext jobContext, ParametersWrapper parameters, ObjectDataWrapper data) throws ParameterException {
 		return new Md5ToSSDeepTask(jobContext, parameters, data, cmd);
 	}
 
+	public static void prepereForAllThreads(MTSCommandLineParams commandLineParams) {
+		cmd = commandLineParams;		
+	}
 }

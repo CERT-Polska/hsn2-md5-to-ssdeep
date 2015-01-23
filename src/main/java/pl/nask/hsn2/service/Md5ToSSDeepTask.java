@@ -129,7 +129,7 @@ public class Md5ToSSDeepTask implements Task {
 	private File prepareTempJsSource(JSContext context) throws IOException {
 		// Create unique path to file.
 		File f = new File(System.getProperty("java.io.tmpdir"));
-		String tempFileName = f.getAbsolutePath() + File.separator + "hsn2-js-sta_" + context.getId() + System.currentTimeMillis();
+		String tempFileName = f.getAbsolutePath() + File.separator + "hsn2-md5_to_ssdeep_" + context.getId() + System.currentTimeMillis();
 		while (true) {
 			f = new File(tempFileName);
 			if (!f.exists()) {

@@ -1,1 +1,2 @@
 build/md5-to-ssdeep /opt/hsn2/
+md5-to-ssdeep.conf /etc/hsn2/

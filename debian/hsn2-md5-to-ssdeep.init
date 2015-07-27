@@ -15,7 +15,7 @@ HSN2_COMPONENT="md5-to-ssdeep"
 MAINCLASS="pl.nask.hsn2.service.Md5ToSSDeepService"
 CONFFILE=/etc/hsn2/md5-to-ssdeep.conf
 
-HSN2_JMX_PORT=1113
+#HSN2_JMX_PORT=1113
 HSN2_JVM_PARAMS_MEMORY=-Xmx1200m
 
 . /lib/hsn2/init-functions-java

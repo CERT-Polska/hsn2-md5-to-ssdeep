@@ -29,7 +29,7 @@ import org.slf4j.LoggerFactory;
 import com.sun.jna.Function;
 import com.sun.jna.NativeLibrary;
 
-public class SSDeepHashGenerator {
+public final class SSDeepHashGenerator {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(SSDeepHashGenerator.class);
 	private static final int HASH_BYTE_ARRAY_LENGTH = 180;
@@ -37,8 +37,7 @@ public class SSDeepHashGenerator {
 	private static NativeLibrary nativeLibrary;
 	private static String outputPath;
 
-	private SSDeepHashGenerator() {
-	}
+	private SSDeepHashGenerator() {}
 
 	public static void initialize(String libName, String outputPath) {
 		LOGGER.info("Loading ssdeep library");

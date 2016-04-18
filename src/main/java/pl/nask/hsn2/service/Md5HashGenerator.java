@@ -36,7 +36,7 @@ import org.slf4j.LoggerFactory;
 
 import pl.nask.hsn2.service.WhiteListFileInputStream;
 
-public class Md5HashGenerator {
+public final class Md5HashGenerator {
 	private static final Logger LOGGER = LoggerFactory.getLogger(Md5HashGenerator.class);
 	private static final int BUFFER_SIZE = 50000;
 	private static Set<String> duplicate = new HashSet<>();

@@ -1,8 +1,8 @@
 /*
  * Copyright (c) NASK, NCSC
- * 
+ *
  * This file is part of HoneySpider Network 2.0.
- * 
+ *
  * This is a free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -41,7 +41,6 @@ import pl.nask.hsn2.protobuff.Resources.JSContext;
 import pl.nask.hsn2.protobuff.Resources.JSContextList;
 import pl.nask.hsn2.task.Task;
 import pl.nask.hsn2.wrappers.ObjectDataWrapper;
-import pl.nask.hsn2.wrappers.ParametersWrapper;
 
 public class Md5ToSSDeepTask implements Task {
 
@@ -50,19 +49,16 @@ public class Md5ToSSDeepTask implements Task {
 	private Set<String> whitelist;
 	private static final Logger LOGGER = LoggerFactory.getLogger(Md5ToSSDeepTask.class);
 	private static final int MD5_STRING_LENGTH = 32;
-	
-	public Md5ToSSDeepTask(TaskContext jobContext, ParametersWrapper parameters, ObjectDataWrapper data, MTSCommandLineParams cmd) {
+
+	public Md5ToSSDeepTask(TaskContext jobContext, ObjectDataWrapper data, MTSCommandLineParams cmd) {
 		this.jobContext = jobContext;
 		prepareWhitelist(cmd.getWhitelistPath());
 		jsContextId = data.getReferenceId("js_context_list");
 	}
-	
+
 	private void prepareWhitelist(String whitelistPath) {
-		FileReader fr = null;
-		BufferedReader br = null;
-		try {
-			fr = new FileReader(whitelistPath);
-			br = new BufferedReader(fr);
+		try (FileReader fr = new FileReader(whitelistPath);
+				BufferedReader br = new BufferedReader(fr)) {
 			String readLine;
 			whitelist = new HashSet<String>();
 			while ((readLine = br.readLine()) != null) {
@@ -75,24 +71,16 @@ public class Md5ToSSDeepTask implements Task {
 		} catch (IOException e) {
 			LOGGER.warn("Cannot access whitelist file.");
 			LOGGER.debug(e.getMessage(), e);
-		} finally {
-			try {
-				br.close();
-				fr.close();
-			} catch (IOException e) {
-				LOGGER.warn("Cannot close whitelist buffered reader.");
-				LOGGER.debug(e.getMessage(), e);
-			}
 		}
 	}
-	
+
 	@Override
-	public boolean takesMuchTime() {
+	public final boolean takesMuchTime() {
 		return false;
 	}
 
 	@Override
-	public void process() throws ParameterException, ResourceException, StorageException, InputDataException {
+	public final void process() throws ParameterException, ResourceException, StorageException, InputDataException {
 		if (jsContextId != null) {
 			try {
 				JSContextList contextList = downloadJsContextList();
@@ -116,10 +104,10 @@ public class Md5ToSSDeepTask implements Task {
 			LOGGER.info("Task skipped, not js");
 		}
 	}
-	
+
 	/**
 	 * Creates temporary file for JS context.
-	 * 
+	 *
 	 * @param context
 	 *            JS context.
 	 * @return Temporary file object.
@@ -135,7 +123,7 @@ public class Md5ToSSDeepTask implements Task {
 			if (!f.exists()) {
 				break;
 			}
-			tempFileName += "-";
+			tempFileName += "-";	//NOPMD
 		}
 
 		// Write source to file.

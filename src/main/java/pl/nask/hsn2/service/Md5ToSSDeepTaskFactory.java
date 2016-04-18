@@ -1,8 +1,8 @@
 /*
  * Copyright (c) NASK, NCSC
- * 
+ *
  * This file is part of HoneySpider Network 2.0.
- * 
+ *
  * This is a free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -31,11 +31,11 @@ public class Md5ToSSDeepTaskFactory implements TaskFactory {
 	private static MTSCommandLineParams cmd;
 
 	@Override
-	public Task newTask(TaskContext jobContext, ParametersWrapper parameters, ObjectDataWrapper data) throws ParameterException {
-		return new Md5ToSSDeepTask(jobContext, parameters, data, cmd);
+	public final Task newTask(TaskContext jobContext, ParametersWrapper parameters, ObjectDataWrapper data) throws ParameterException {
+		return new Md5ToSSDeepTask(jobContext, data, cmd);
 	}
 
 	public static void prepereForAllThreads(MTSCommandLineParams commandLineParams) {
-		cmd = commandLineParams;		
+		cmd = commandLineParams;
 	}
 }

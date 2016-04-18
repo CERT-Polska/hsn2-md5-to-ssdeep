@@ -1,8 +1,8 @@
 /*
  * Copyright (c) NASK, NCSC
- * 
+ *
  * This file is part of HoneySpider Network 2.0.
- * 
+ *
  * This is a free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -38,7 +38,7 @@ public class WhiteListFileInputStream extends InputStream {
 	 * Returns only [a-zA-Z0-9] characters. All other characters are ignored. Returns -1 for EOF.
 	 */
 	@Override
-	public int read() throws IOException {
+	public final int read() throws IOException {
 		int result;
 		do {
 			result = is.read();
@@ -48,7 +48,7 @@ public class WhiteListFileInputStream extends InputStream {
 
 	/**
 	 * Checks if character is accepted for white listing.
-	 * 
+	 *
 	 * @param ch
 	 * @return True if character has been accepted and should be present in trimmed string, otherwise false.
 	 */
@@ -58,7 +58,7 @@ public class WhiteListFileInputStream extends InputStream {
 
 	/**
 	 * Checks if given character is digit.
-	 * 
+	 *
 	 * @param ch
 	 *            Character to check.
 	 * @return True if it's digit. False otherwise.
@@ -69,7 +69,7 @@ public class WhiteListFileInputStream extends InputStream {
 
 	/**
 	 * Checks if given character is upper case letter [A-Z].
-	 * 
+	 *
 	 * @param ch
 	 *            Character to check.
 	 * @return True if it's upper case letter. False otherwise.
@@ -80,7 +80,7 @@ public class WhiteListFileInputStream extends InputStream {
 
 	/**
 	 * Checks if given character is lower case letter [a-z].
-	 * 
+	 *
 	 * @param ch
 	 *            Character to check.
 	 * @return True if it's lower case letter. False otherwise.
@@ -88,9 +88,9 @@ public class WhiteListFileInputStream extends InputStream {
 	private boolean isLowerCase(char ch) {
 		return ch >= 'a' && ch <= 'z';
 	}
-	
+
 	@Override
-	public void close() throws IOException {
+	public final void close() throws IOException {
 		is.close();
 	}
 }

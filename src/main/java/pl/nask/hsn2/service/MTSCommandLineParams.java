@@ -1,8 +1,8 @@
 /*
  * Copyright (c) NASK, NCSC
- * 
+ *
  * This file is part of HoneySpider Network 2.0.
- * 
+ *
  * This is a free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -28,29 +28,29 @@ import pl.nask.hsn2.CommandLineParams;
 
 public class MTSCommandLineParams extends CommandLineParams {
 	private static final OptionNameWrapper WHITELIST_PATH = new OptionNameWrapper("wp", "whitelistPath");
-    private static final Logger LOGGER = LoggerFactory.getLogger(MTSCommandLineParams.class);
-    
-    @Override
-    public void initOptions() {
-        super.initOptions();
-        addOption(WHITELIST_PATH, "path", "Path to whitelist files");
+	private static final Logger LOGGER = LoggerFactory.getLogger(MTSCommandLineParams.class);
+
+	@Override
+	public final void initOptions() {
+		super.initOptions();
+		addOption(WHITELIST_PATH, "path", "Path to whitelist files");
 	}
-    
-    public String getWhitelistPath() {
+
+	public final String getWhitelistPath() {
 		return getOptionValue(WHITELIST_PATH);
 	}
-    
-    @Override
-	protected void initDefaults() {
-	    super.initDefaults();
-	    setDefaultValue(WHITELIST_PATH, "whitelist.md5");
-	    setDefaultMaxThreads(1);
-	    setDefaultServiceNameAndQueueName("md5-to-ssdeep");
-	    setDefaultDataStoreAddress("http://127.0.0.1:8080");
-    }
-    
-    @Override
-	protected void validate(){
+
+	@Override
+	protected final void initDefaults() {
+		super.initDefaults();
+		setDefaultValue(WHITELIST_PATH, "whitelist.md5");
+		setDefaultMaxThreads(1);
+		setDefaultServiceNameAndQueueName("md5-to-ssdeep");
+		setDefaultDataStoreAddress("http://127.0.0.1:8080");
+	}
+
+	@Override
+	protected final void validate(){
 		super.validate();
 		String msg = "";
 		if (!new File(getWhitelistPath()).exists()){
@@ -61,9 +61,9 @@ public class MTSCommandLineParams extends CommandLineParams {
 			throw new IllegalStateException(msg);
 		}
 	}
-    
-    @Override
-    public Integer getMaxThreads() {
-    	return 1;
-    }
+
+	@Override
+	public final Integer getMaxThreads() {
+		return 1;
+	}
 }

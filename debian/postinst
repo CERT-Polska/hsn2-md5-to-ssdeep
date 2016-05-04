@@ -1,0 +1,10 @@
+#!/bin/sh -e
+
+. /lib/hsn2/conf-functions
+
+if [ "$1" = "configure" ]; then
+	touch /opt/hsn2/md5-to-ssdeep/lib/whitelist.md5
+	db_stop
+fi
+
+#DEBHELPER#

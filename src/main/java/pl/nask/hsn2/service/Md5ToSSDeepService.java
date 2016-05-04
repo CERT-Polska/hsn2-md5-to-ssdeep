@@ -1,8 +1,8 @@
 /*
  * Copyright (c) NASK, NCSC
- * 
- * This file is part of HoneySpider Network 2.0.
- * 
+ *
+ * This file is part of HoneySpider Network 2.1.
+ *
  * This is a free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -43,20 +43,20 @@ public class Md5ToSSDeepService extends ServiceMain {
 		mts.start();
 		mts.getServiceRunner().join();
 	}
-	
+
 	@Override
-	protected CommandLineParams newCommandLineParams() {
+	protected final CommandLineParams newCommandLineParams() {
 		return new MTSCommandLineParams();
-	}
-	
-	@Override
-	protected void prepareService() {
-		SSDeepHashGenerator.initialize("libfuzzy.so.2","whitelist.ssdeep");
-		
 	}
 
 	@Override
-	protected Class<? extends TaskFactory> initializeTaskFactory() {
+	protected final void prepareService() {
+		SSDeepHashGenerator.initialize("libfuzzy.so.2","whitelist.ssdeep");
+
+	}
+
+	@Override
+	protected final Class<? extends TaskFactory> initializeTaskFactory() {
 		Md5ToSSDeepTaskFactory.prepereForAllThreads((MTSCommandLineParams)getCommandLineParams());
 		return Md5ToSSDeepTaskFactory.class;
 	}

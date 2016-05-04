@@ -1,0 +1,14 @@
+Source: hsn2-md5-to-ssdeep
+Section: java
+Priority: optional
+Maintainer: CERT Polska <info@cert.pl>
+Build-Depends: debhelper (>= 8.0.0), maven
+Standards-Version: 3.9.3
+
+Package: hsn2-md5-to-ssdeep
+Architecture: all
+Depends: ${misc:Depends}, java-wrappers, openjdk-7-jre, jsvc, libfuzzy2, hsn2-commons-debian
+Homepage: http://www.honeyspider.net
+Description: HSN2 MD5 To SSDeep service
+ Appends calculated ssdeep hashes to a local whitelist for 
+ javascript contexts that have been whitelisted using their MD5 hashes.

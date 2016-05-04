@@ -1,8 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <artifactId>hsn2-md5-to-ssdeep</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
-  <name>HSN2 md5 to ssdeep </name>
+  <name>HSN2 MD5 To SSDeep</name>
   
   <properties>
 		<mainClass>pl.nask.hsn2.service.Md5ToSSDeep</mainClass>
@@ -12,9 +11,10 @@
   	<groupId>pl.nask.hsn2</groupId>
   	<artifactId>hsn2-commons</artifactId>
   	<version>1.0.0-SNAPSHOT</version>
+  	<relativePath>../hsn2-commons-java</relativePath>
   </parent>
   
-  <description>md5 to ssdeep whitelist generator</description>
+  <description>HSN2 MD5 To SSDeep service appends calculated ssdeep hashes to a local whitelist for javascript contexts that have been whitelisted using their MD5 hashes.</description>
   <dependencies>
   	<dependency>
   		<groupId>pl.nask.hsn2</groupId>

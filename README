@@ -1,9 +1,13 @@
-HSN2 md5 hash to ssdeep hash (hsn2-md5-to-ssdeep)
-
-Simple service to generate ssdeep hashes based on md5 hashes.
+HSN2 MD5 To SSDeep (hsn2-md5-to-ssdeep)
 
 
-This repository is a part of bigger project: Honeyspider Network 2.0.
+HSN2 MD5 To SSDeep service appends calculated ssdeep hashes to a local whitelist for 
+javascript contexts that have been whitelisted using their MD5 hashes.
+
+
+
+
+This repository is a part of bigger project: Honeyspider Network 2.1.
 Project bundle is located at: https://github.com/CERT-Polska/hsn2-bundle.
 More information is available on the project's website:
 http://www.honeyspider.net
